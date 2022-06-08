@@ -1,3 +1,5 @@
+from exceptions import SubtractionBelowZeroError
+
 class StLb:
     def __init__(self, stones_lbs):
         if stones_lbs[0] == 0 and stones_lbs[1] >= 14:
@@ -18,5 +20,13 @@ class StLb:
         total = self.in_lbs + other.in_lbs
         return StLb([0, total])
         # return self._convert_lbs_to_stones_and_lbs(total)
+
+    def __sub__(self, other):
+        total = self.in_lbs - other.in_lbs
+        if total < 0:
+            raise SubtractionBelowZeroError
+
+        return StLb([0, total])
+
 
 

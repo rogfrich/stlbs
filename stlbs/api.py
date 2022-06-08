@@ -1,7 +1,9 @@
 class StLb:
     def __init__(self, stones_lbs):
         if stones_lbs[0] == 0 and stones_lbs[1] >= 14:
-            self.whole_stones, self.remainder_lbs = self._convert_lbs_to_stones_and_lbs(stones_lbs[1])
+            self.whole_stones, self.remainder_lbs = self._convert_lbs_to_stones_and_lbs(
+                stones_lbs[1]
+            )
         else:
             self.whole_stones = stones_lbs[0]
             self.remainder_lbs = stones_lbs[1]

@@ -13,3 +13,10 @@ class StLb:
         whole_stones = lbs // 14
         remainder_lbs = lbs % 14
         return whole_stones, remainder_lbs
+
+    def __add__(self, other):
+        total = self.in_lbs + other.in_lbs
+        return StLb([0, total])
+        # return self._convert_lbs_to_stones_and_lbs(total)
+
+

@@ -63,3 +63,27 @@ def test_weight_in_lbs_only():
     assert test3.whole_stones == 1
     assert test3.remainder_lbs == 0
     assert test3.in_lbs == 14
+
+
+def test_add():
+    """
+    Given that I have StLb objects called spam and eggs, and the expression (foo = spam + eggs)
+    as a user of the system
+    I want foo to be an instance of StLb with its whole_stones, remainder_lbs and in_lbs values equal to the total of
+    the corresponding values in spam and eggs
+    """
+    from stlbs import StLb
+
+    test1_spam = StLb([1, 0])
+    test1_eggs = StLb([0, 7])
+    test1_foo = test1_spam + test1_eggs
+    assert test1_foo.whole_stones == 1
+    assert test1_foo.remainder_lbs == 7
+    assert test1_foo.in_lbs == 21
+
+    test2_spam = StLb([10, 7])
+    test2_eggs = StLb([1, 8])
+    test2_foo = test2_spam + test2_eggs
+    assert test2_foo.whole_stones == 12
+    assert test2_foo.remainder_lbs == 1
+    assert test2_foo.in_lbs == 169

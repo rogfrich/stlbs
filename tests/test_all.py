@@ -181,6 +181,7 @@ def test_subtraction_below_zero_raises_exception():
     foo = spam - eggs
     assert foo.in_lbs == 0
 
+
 def test_str():
     """
     Given that I have a StLb object
@@ -192,6 +193,7 @@ def test_str():
     foo = StLb([0, 277.5])
     correct = "StLb object: 19.0 stones and 11.5lbs [277.5lbs]"
     assert foo.__str__() == correct
+
 
 def test_repr():
     """

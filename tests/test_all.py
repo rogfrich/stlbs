@@ -180,3 +180,27 @@ def test_subtraction_below_zero_raises_exception():
     eggs = StLb([1, 0])
     foo = spam - eggs
     assert foo.in_lbs == 0
+
+def test_str():
+    """
+    Given that I have a StLb object
+    As a user of the package
+    I want its __str__() method to return a meaningful message
+    """
+    from stlbs import StLb
+
+    foo = StLb([0, 277.5])
+    correct = "StLb object: 19.0 stones and 11.5lbs [277.5lbs]"
+    assert foo.__str__() == correct
+
+def test_repr():
+    """
+    Given that I have a StLb object
+    As a user of the package
+    I want its __repr__() method to return a meaningful message
+    """
+    from stlbs import StLb
+
+    foo = StLb([0, 277.5])
+    correct = "StLb object: 19.0 stones and 11.5lbs [277.5lbs]"
+    assert foo.__repr__() == correct

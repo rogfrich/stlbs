@@ -128,8 +128,13 @@ def test_add_iteratble():
 
     spam = StLb([1, 0])
     spam += (1, 0)
-
     assert spam.whole_stones == 2 and spam.remainder_lbs == 0 and spam.in_lbs == 28
+
+    spam = StLb([1, 0])
+    spam += (0, 15)
+    assert spam.whole_stones == 2 and spam.remainder_lbs == 1 and spam.in_lbs == 29
+    assert spam.__str__() == "StLb object: 2 stones and 1lbs [29lbs]"
+
 
 
 def test_subtract_iterable():

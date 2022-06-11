@@ -22,7 +22,9 @@ class StLb:
         Accepts another StLb object, or a tuple / list in the format (whole_stones, remainder_lbs).
         """
         if not isinstance(other, StLb):
-            return StLb((self.whole_stones + other[0], self.remainder_lbs + other[1]))
+            other_in_lbs = (other[0] * 14) + other[1]
+            new_in_lbs = other_in_lbs + self.in_lbs
+            return StLb([0, new_in_lbs])
 
         else:
             total = self.in_lbs + other.in_lbs

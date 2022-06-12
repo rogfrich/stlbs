@@ -219,9 +219,9 @@ def test_convert_stones_and_lbs_to_lbs():
     I want a single function that does this calculation
     """
     from stlbs import StLb
-    foo = StLb([1, 0]) # Value of foo is irrelevant to the test - just need to instantiate an instance, and have to give it some initial params
+
+    foo = StLb(
+        [1, 0]
+    )  # Value of foo is irrelevant to the test - just need to instantiate an instance, and have to give it some initial params
     correct = 15
     assert foo._convert_stones_and_lbs_to_lbs((1, 1)) == correct
-
-
-

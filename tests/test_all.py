@@ -133,7 +133,7 @@ def test_add_iteratble():
     spam = StLb([1, 0])
     spam += (0, 15)
     assert spam.whole_stones == 2 and spam.remainder_lbs == 1 and spam.in_lbs == 29
-    assert spam.__str__() == "StLb object: 2 stones and 1 lbs [29 lbs]"
+    assert spam.__str__() == "StLb object: 2st and 1 lb [29 lb]"
 
 
 def test_subtract_iterable():
@@ -185,6 +185,17 @@ def test_subtraction_below_zero_raises_exception():
     foo = spam - eggs
     assert foo.in_lbs == 0
 
+def test_text():
+    """
+    Given that I have an instance of StLb
+    As the maintainer of the package
+    I want the instance._text to accurately reflect the instance so that it can be used in str and repr methods
+    Format: f"StLb object: {self.whole_stones}st and {self.remainder_lbs} lb [{self.in_lbs}]"
+    """
+    from stlbs import StLb
+
+    spam = StLb((1, 7))
+    assert spam._text == "StLb object: 1st and 7 lb [21 lb]"
 
 def test_str():
     """
@@ -194,8 +205,8 @@ def test_str():
     """
     from stlbs import StLb
 
-    foo = StLb([0, 277.5])
-    correct = "StLb object: 19.0 stones and 11.5 lbs [277.5 lbs]"
+    foo = StLb([1, 7])
+    correct = "StLb object: 1st and 7 lb [21 lb]"
     assert foo.__str__() == correct
 
 
@@ -207,8 +218,8 @@ def test_repr():
     """
     from stlbs import StLb
 
-    foo = StLb([0, 277.5])
-    correct = "StLb object: 19.0 stones and 11.5 lbs [277.5 lbs]"
+    foo = StLb([1, 7])
+    correct = "StLb object: 1st and 7 lb [21 lb]"
     assert foo.__repr__() == correct
 
 
@@ -225,3 +236,4 @@ def test_convert_stones_and_lbs_to_lbs():
     )  # Value of foo is irrelevant to the test - just need to instantiate an instance, and have to give it some initial params
     correct = 15
     assert foo._convert_stones_and_lbs_to_lbs((1, 1)) == correct
+

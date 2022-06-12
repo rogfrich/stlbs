@@ -210,3 +210,18 @@ def test_repr():
     foo = StLb([0, 277.5])
     correct = "StLb object: 19.0 stones and 11.5lbs [277.5lbs]"
     assert foo.__repr__() == correct
+
+
+def test_convert_stones_and_lbs_to_lbs():
+    """
+    Given that have multiple places in the code where a (stones, lbs) format needs to be converted to (0, value_in_lbs)
+    As the maintainer of the package
+    I want a single function that does this calculation
+    """
+    from stlbs import StLb
+    foo = StLb([1, 0]) # Value of foo is irrelevant to the test - just need to instantiate an instance, and have to give it some initial params
+    correct = 15
+    assert foo._convert_stones_and_lbs_to_lbs((1, 1)) == correct
+
+
+

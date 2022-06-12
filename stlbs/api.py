@@ -4,7 +4,9 @@ from exceptions import SubtractionBelowZeroError
 class StLb:
     def __init__(self, stones_lbs):
         self.in_lbs = self._convert_stones_and_lbs_to_lbs(stones_lbs)
-        self.whole_stones, self.remainder_lbs = self._convert_lbs_to_stones_and_lbs(self.in_lbs)
+        self.whole_stones, self.remainder_lbs = self._convert_lbs_to_stones_and_lbs(
+            self.in_lbs
+        )
         self._text = f"StLb object: {self.whole_stones}st and {self.remainder_lbs} lb [{self.in_lbs} lb]"
 
     def _convert_lbs_to_stones_and_lbs(self, lbs):

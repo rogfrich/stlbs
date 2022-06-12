@@ -93,6 +93,7 @@ def test_add():
     assert test2_foo.in_lbs == 169
     assert test2_foo.__str__() == "StLb object: 12st and 1 lb [169 lb]"
 
+
 def test_subtract():
     """
     Given that I have StLb objects called spam and eggs, and the expression (foo = spam - eggs)
@@ -186,6 +187,7 @@ def test_subtraction_below_zero_raises_exception():
     foo = spam - eggs
     assert foo.in_lbs == 0
 
+
 def test_text():
     """
     Given that I have an instance of StLb
@@ -197,6 +199,7 @@ def test_text():
 
     spam = StLb((1, 7))
     assert spam._text == "StLb object: 1st and 7 lb [21 lb]"
+
 
 def test_str():
     """
@@ -237,4 +240,3 @@ def test_convert_stones_and_lbs_to_lbs():
     )  # Value of foo is irrelevant to the test - just need to instantiate an instance, and have to give it some initial params
     correct = 15
     assert foo._convert_stones_and_lbs_to_lbs((1, 1)) == correct
-

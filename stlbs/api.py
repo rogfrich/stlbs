@@ -48,7 +48,7 @@ class StLb:
         return StLb(self._convert_lbs_to_stones_and_lbs(updated_in_lbs))
 
     def __str__(self):
-        return f"StLb object: {self.whole_stones} stones and {self.remainder_lbs}lbs [{self.in_lbs}lbs]"
+        return f"StLb object: {self.whole_stones} stones and {self.remainder_lbs} lbs [{self.in_lbs} lbs]"
 
     def __repr__(self):
-        return f"StLb object: {self.whole_stones} stones and {self.remainder_lbs}lbs [{self.in_lbs}lbs]"
+        return f"StLb object: {self.whole_stones} stones and {self.remainder_lbs} lbs [{self.in_lbs} lbs]"

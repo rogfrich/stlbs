@@ -133,7 +133,7 @@ def test_add_iteratble():
     spam = StLb([1, 0])
     spam += (0, 15)
     assert spam.whole_stones == 2 and spam.remainder_lbs == 1 and spam.in_lbs == 29
-    assert spam.__str__() == "StLb object: 2 stones and 1lbs [29lbs]"
+    assert spam.__str__() == "StLb object: 2 stones and 1 lbs [29 lbs]"
 
 
 def test_subtract_iterable():
@@ -195,7 +195,7 @@ def test_str():
     from stlbs import StLb
 
     foo = StLb([0, 277.5])
-    correct = "StLb object: 19.0 stones and 11.5lbs [277.5lbs]"
+    correct = "StLb object: 19.0 stones and 11.5 lbs [277.5 lbs]"
     assert foo.__str__() == correct
 
 
@@ -208,7 +208,7 @@ def test_repr():
     from stlbs import StLb
 
     foo = StLb([0, 277.5])
-    correct = "StLb object: 19.0 stones and 11.5lbs [277.5lbs]"
+    correct = "StLb object: 19.0 stones and 11.5 lbs [277.5 lbs]"
     assert foo.__repr__() == correct
 
 

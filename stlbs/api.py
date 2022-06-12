@@ -2,8 +2,9 @@ from exceptions import SubtractionBelowZeroError
 
 
 class StLb:
+
     def __init__(self, stones_lbs):
-        self.in_lbs = (stones_lbs[0] * 14) + stones_lbs[1]
+        self.in_lbs = self._convert_stones_and_lbs_to_lbs(stones_lbs)
         self.whole_stones, self.remainder_lbs = self._convert_lbs_to_stones_and_lbs(
             self.in_lbs
         )
@@ -13,12 +14,16 @@ class StLb:
         remainder_lbs = lbs % 14
         return whole_stones, remainder_lbs
 
+    def _convert_stones_and_lbs_to_lbs(self, stones_and_lbs):
+        in_lbs = (stones_and_lbs[0] * 14) + stones_and_lbs[1]
+        return (in_lbs)
+
     def __add__(self, other):
         """
         Accepts another StLb object, or a tuple / list in the format (whole_stones, remainder_lbs).
         """
         if not isinstance(other, StLb):
-            other_in_lbs = (other[0] * 14) + other[1]
+            other_in_lbs = self._convert_stones_and_lbs_to_lbs(other)
             new_in_lbs = other_in_lbs + self.in_lbs
             return StLb([0, new_in_lbs])
 
@@ -31,7 +36,7 @@ class StLb:
         Accepts another StLb object, or a tuple / list in the format (whole_stones, remainder_lbs).
         """
         if not isinstance(other, StLb):
-            other_in_lbs = (other[0] * 14) + other[1]
+            other_in_lbs = self._convert_stones_and_lbs_to_lbs(other)
         else:
             other_in_lbs = other.in_lbs
 

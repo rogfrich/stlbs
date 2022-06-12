@@ -136,7 +136,6 @@ def test_add_iteratble():
     assert spam.__str__() == "StLb object: 2 stones and 1lbs [29lbs]"
 
 
-
 def test_subtract_iterable():
     """
     Given that I have an StLb object

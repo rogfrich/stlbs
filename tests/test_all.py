@@ -91,7 +91,7 @@ def test_add():
     assert test2_foo.whole_stones == 12
     assert test2_foo.remainder_lbs == 1
     assert test2_foo.in_lbs == 169
-
+    assert test2_foo.__str__() == "StLb object: 12st and 1 lb [169 lb]"
 
 def test_subtract():
     """
@@ -115,6 +115,7 @@ def test_subtract():
     assert test2_foo.whole_stones == 8
     assert test2_foo.remainder_lbs == 13
     assert test2_foo.in_lbs == 125
+    assert test2_foo.__str__() == "StLb object: 8st and 13 lb [125 lb]"
 
 
 def test_add_iteratble():

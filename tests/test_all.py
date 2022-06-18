@@ -233,6 +233,68 @@ def test_subtraction_below_zero_raises_exception():
     assert foo.in_lbs == 0
 
 
+def test_multiply_objects_together():
+    """
+    Given that I have a StLb object
+    As a user of the package
+    I want to be able to multiply it by another StLB instance or list / tuple representation
+    E.g. StLb(2, 0) * StLB(2, 0) == StLb(56, 0)  [i.e. 28lbs * 28lbs]
+    StLB(2, 0) * (2, 0) == StLb(56, 0)
+    """
+    from stlbs import StLb
+
+    # Test that two objects multiplied together create a new object correctly
+    spam = StLb([2, 0])
+    eggs = StLb([2, 0])
+    foo = spam * eggs
+    assert foo.whole_stones == 56 and foo.remainder_lbs == 0
+
+    # Test that multiplication assignment works
+    spam = StLb([2, 0])
+    spam *= StLb([2, 0])
+    assert foo.whole_stones == 56 and foo.remainder_lbs == 0
+
+    # Test that multiplication by a tuple / list works correctly
+    spam = StLb([2, 0])
+    foo = spam * (2, 0)
+    assert foo.whole_stones == 56 and foo.remainder_lbs == 0
+
+
+def test_multiply_by_number():
+    """
+    Given that I have a StLb object
+    As a user of the package
+    I want to be able to multiply it by a number (float, integer, decimal)
+    E.g StLb(2, 0) * 2 == StLb(4, 0)
+    """
+    from stlbs import StLb
+
+    spam = StLb([2, 0])
+    foo = spam * 2
+
+    assert foo.whole_stones == 4 and foo.remainder_lbs == 0
+
+
+def test_divide_by_object():
+    """
+    Given that I have a StLb object
+    As a user of the package
+    I want to be able to divide by another StLb instance and return a numeric type
+    E.g. StLb(4, 0) / StLb(2, 0) == 2
+    """
+    raise NotImplementedError
+
+
+def test_divide_by_number():
+    """
+    Given that I have a StLb object
+    As a user of the package
+    I want to be able to divide by a number (float, integer, decimal)
+    E.g. StLb(4, 0) / 2 == StLb(2, 0)
+    """
+    raise NotImplementedError
+
+
 # Test support methods
 
 

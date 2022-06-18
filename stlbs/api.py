@@ -47,6 +47,19 @@ class StLb:
 
         return StLb(self._convert_lbs_to_stones_and_lbs(updated_in_lbs))
 
+    def __mul__(self, other):
+        if isinstance(other, (int, float)):
+            return StLb([0, self.in_lbs * other])
+        if not isinstance(other, StLb):
+            other_in_lbs = self._convert_stones_and_lbs_to_lbs(other)
+
+        else:
+            other_in_lbs = other.in_lbs
+
+        updated_in_pounds = self.in_lbs * other_in_lbs
+
+        return StLb(self._convert_lbs_to_stones_and_lbs(updated_in_pounds))
+
     def __str__(self):
         return self._text
 

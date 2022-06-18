@@ -60,6 +60,20 @@ class StLb:
 
         return StLb(self._convert_lbs_to_stones_and_lbs(updated_in_pounds))
 
+    def __truediv__(self, other):
+        if isinstance(other, (int, float)):
+            divisor = other
+        elif isinstance(other, (list, tuple)):
+            divisor = self._convert_stones_and_lbs_to_lbs(other)
+        elif isinstance(other, StLb):
+            divisor = other.in_lbs
+        else:
+            raise ValueError(f"Cannot divide StLb object by {type(other)}")
+
+        print(f"Divisor: {divisor}")
+        return self.in_lbs / divisor
+
+
     def __str__(self):
         return self._text
 

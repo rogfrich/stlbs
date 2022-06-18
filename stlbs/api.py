@@ -70,7 +70,6 @@ class StLb:
         else:
             raise ValueError(f"Cannot divide StLb object by {type(other)}")
 
-        print(f"Divisor: {divisor}")
         return self.in_lbs / divisor
 
 

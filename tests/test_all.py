@@ -279,10 +279,20 @@ def test_divide_by_object():
     """
     Given that I have a StLb object
     As a user of the package
-    I want to be able to divide by another StLb instance and return a numeric type
+    I want to be able to divide by another StLb instance or an equivalent iterable and return a numeric type
     E.g. StLb(4, 0) / StLb(2, 0) == 2
+    StLb(4, 0) / (2, 0) == 2
     """
-    raise NotImplementedError
+    from stlbs import StLb
+
+    spam = StLb([4, 0])  # 56lb
+    foo = StLb([2, 0])  # 28lb
+    correct = 2  # 56 / 14
+    assert spam / foo == correct
+
+    spam = StLb([4, 0])  # 56lb
+    correct = 2  # 56 / 14
+    assert spam / (2, 0) == correct
 
 
 def test_divide_by_number():
@@ -292,8 +302,27 @@ def test_divide_by_number():
     I want to be able to divide by a number (float, integer, decimal)
     E.g. StLb(4, 0) / 2 == StLb(2, 0)
     """
-    raise NotImplementedError
+    from stlbs import StLb
 
+    spam = StLb([4, 0])  # 56lb
+    correct = 2  # 56 / 28
+    assert spam / 28 == correct
+
+
+
+def test_divide_by_invalid_type_raises_valueerror():
+    """
+    Given that I have a StLb object
+    As the maintainer of the package
+    I want ValueError to be raised if the divisor is not in the following types:
+        [int, float, list, tuple, StLb]
+    """
+    from stlbs import StLb
+
+    spam = StLb([4, 0])  # 56lb
+
+    with pytest.raises(ValueError):
+        spam / "this is not a valid type for division"
 
 # Test support methods
 

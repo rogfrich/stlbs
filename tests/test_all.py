@@ -2,6 +2,9 @@ import pytest
 from exceptions import SubtractionBelowZeroError
 
 
+# Object instantiation tests
+
+
 def test_stlb_class_is_importable():
     """
     Given that the StLbs package is installed
@@ -69,6 +72,48 @@ def test_weight_in_lbs_only():
     assert test3.in_lbs == 14
 
 
+def test_text():
+    """
+    Given that I have an instance of StLb
+    As the maintainer of the package
+    I want the instance._text to accurately reflect the instance so that it can be used in str and repr methods
+    Format: f"StLb object: {self.whole_stones}st and {self.remainder_lbs} lb [{self.in_lbs}]"
+    """
+    from stlbs import StLb
+
+    spam = StLb((1, 7))
+    assert spam._text == "StLb object: 1st and 7 lb [21 lb]"
+
+
+def test_str():
+    """
+    Given that I have a StLb object
+    As a user of the package
+    I want its __str__() method to return a meaningful message
+    """
+    from stlbs import StLb
+
+    foo = StLb([1, 7])
+    correct = "StLb object: 1st and 7 lb [21 lb]"
+    assert foo.__str__() == correct
+
+
+def test_repr():
+    """
+    Given that I have a StLb object
+    As a user of the package
+    I want its __repr__() method to return a meaningful message
+    """
+    from stlbs import StLb
+
+    foo = StLb([1, 7])
+    correct = "StLb object: 1st and 7 lb [21 lb]"
+    assert foo.__repr__() == correct
+
+
+# Tests for arithmetic operator overloads
+
+
 def test_add():
     """
     Given that I have StLb objects called spam and eggs, and the expression (foo = spam + eggs)
@@ -94,6 +139,25 @@ def test_add():
     assert test2_foo.__str__() == "StLb object: 12st and 1 lb [169 lb]"
 
 
+def test_add_iteratble():
+    """
+    Given that I have an StLb object
+    As a user of the package
+    I want to add the value of an iterable, (1, 7) for example, to whole_stones and remainder_lbs
+    in_lbs should be updated accordingly
+    """
+    from stlbs import StLb
+
+    spam = StLb([1, 0])
+    spam += (1, 0)
+    assert spam.whole_stones == 2 and spam.remainder_lbs == 0 and spam.in_lbs == 28
+
+    spam = StLb([1, 0])
+    spam += (0, 15)
+    assert spam.whole_stones == 2 and spam.remainder_lbs == 1 and spam.in_lbs == 29
+    assert spam.__str__() == "StLb object: 2st and 1 lb [29 lb]"
+
+
 def test_subtract():
     """
     Given that I have StLb objects called spam and eggs, and the expression (foo = spam - eggs)
@@ -117,25 +181,6 @@ def test_subtract():
     assert test2_foo.remainder_lbs == 13
     assert test2_foo.in_lbs == 125
     assert test2_foo.__str__() == "StLb object: 8st and 13 lb [125 lb]"
-
-
-def test_add_iteratble():
-    """
-    Given that I have an StLb object
-    As a user of the package
-    I want to add the value of an iterable, (1, 7) for example, to whole_stones and remainder_lbs
-    in_lbs should be updated accordingly
-    """
-    from stlbs import StLb
-
-    spam = StLb([1, 0])
-    spam += (1, 0)
-    assert spam.whole_stones == 2 and spam.remainder_lbs == 0 and spam.in_lbs == 28
-
-    spam = StLb([1, 0])
-    spam += (0, 15)
-    assert spam.whole_stones == 2 and spam.remainder_lbs == 1 and spam.in_lbs == 29
-    assert spam.__str__() == "StLb object: 2st and 1 lb [29 lb]"
 
 
 def test_subtract_iterable():
@@ -188,43 +233,69 @@ def test_subtraction_below_zero_raises_exception():
     assert foo.in_lbs == 0
 
 
-def test_text():
-    """
-    Given that I have an instance of StLb
-    As the maintainer of the package
-    I want the instance._text to accurately reflect the instance so that it can be used in str and repr methods
-    Format: f"StLb object: {self.whole_stones}st and {self.remainder_lbs} lb [{self.in_lbs}]"
-    """
-    from stlbs import StLb
-
-    spam = StLb((1, 7))
-    assert spam._text == "StLb object: 1st and 7 lb [21 lb]"
-
-
-def test_str():
+def test_multiply_objects_together():
     """
     Given that I have a StLb object
     As a user of the package
-    I want its __str__() method to return a meaningful message
+    I want to be able to multiply it by another StLB instance or list / tuple representation
+    E.g. StLb(2, 0) * StLB(2, 0) == StLb(56, 0)  [i.e. 28lbs * 28lbs]
+    StLB(2, 0) * (2, 0) == StLb(56, 0)
     """
     from stlbs import StLb
 
-    foo = StLb([1, 7])
-    correct = "StLb object: 1st and 7 lb [21 lb]"
-    assert foo.__str__() == correct
+    # Test that two objects multiplied together create a new object correctly
+    spam = StLb([2, 0])
+    eggs = StLb([2, 0])
+    foo = spam * eggs
+    assert foo.whole_stones == 56 and foo.remainder_lbs == 0
+
+    # Test that multiplication assignment works
+    spam = StLb([2, 0])
+    spam *= StLb([2, 0])
+    assert foo.whole_stones == 56 and foo.remainder_lbs == 0
+
+    # Test that multiplication by a tuple / list works correctly
+    spam = StLb([2, 0])
+    foo = spam * (2, 0)
+    assert foo.whole_stones == 56 and foo.remainder_lbs == 0
 
 
-def test_repr():
+def test_multiply_by_number():
     """
     Given that I have a StLb object
     As a user of the package
-    I want its __repr__() method to return a meaningful message
+    I want to be able to multiply it by a number (float, integer, decimal)
+    E.g StLb(2, 0) * 2 == StLb(4, 0)
     """
     from stlbs import StLb
 
-    foo = StLb([1, 7])
-    correct = "StLb object: 1st and 7 lb [21 lb]"
-    assert foo.__repr__() == correct
+    spam = StLb([2, 0])
+    foo = spam * 2
+
+    assert foo.whole_stones == 4 and foo.remainder_lbs == 0
+
+
+def test_divide_by_object():
+    """
+    Given that I have a StLb object
+    As a user of the package
+    I want to be able to divide by another StLb instance and return a numeric type
+    E.g. StLb(4, 0) / StLb(2, 0) == 2
+    """
+    raise NotImplementedError
+
+
+def test_divide_by_number():
+    """
+    Given that I have a StLb object
+    As a user of the package
+    I want to be able to divide by a number (float, integer, decimal)
+    E.g. StLb(4, 0) / 2 == StLb(2, 0)
+    """
+    raise NotImplementedError
+
+
+# Test support methods
 
 
 def test_convert_stones_and_lbs_to_lbs():
@@ -235,8 +306,7 @@ def test_convert_stones_and_lbs_to_lbs():
     """
     from stlbs import StLb
 
-    foo = StLb(
-        [1, 0]
-    )  # Value of foo is irrelevant to the test - just need to instantiate an instance, and have to give it some initial params
+    foo = StLb([1, 0])
+    # Value of foo is irrelevant to this test - just need to instantiate an instance, so need to give required values
     correct = 15
     assert foo._convert_stones_and_lbs_to_lbs((1, 1)) == correct

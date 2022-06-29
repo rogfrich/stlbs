@@ -38,10 +38,10 @@ An instance of `StLb` has a number of useful attributes:
 >>> my_weight.remainder_lbs
 7
 
-my_weight.in_lbs
+>>> my_weight.in_lbs
 147
 
-my_weight.text
+>>> my_weight.text
 '10st and 7 lb [147 lb]'
 ```
 

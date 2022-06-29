@@ -82,7 +82,7 @@ def test_text():
     from stlbs import StLb
 
     spam = StLb((1, 7))
-    assert spam._text == "StLb object: 1st and 7 lb [21 lb]"
+    assert spam.text == "1st and 7 lb [21 lb]"
 
 
 def test_str():
@@ -309,7 +309,6 @@ def test_divide_by_number():
     assert spam / 28 == correct
 
 
-
 def test_divide_by_invalid_type_raises_valueerror():
     """
     Given that I have a StLb object
@@ -323,6 +322,7 @@ def test_divide_by_invalid_type_raises_valueerror():
 
     with pytest.raises(ValueError):
         spam / "this is not a valid type for division"
+
 
 # Test support methods
 

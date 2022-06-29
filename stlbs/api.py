@@ -65,6 +65,7 @@ class StLb:
     def __truediv__(self, other):
         if isinstance(other, (int, float)):
             divisor = other
+            return StLb((0, self.in_lbs / other))
         elif isinstance(other, (list, tuple)):
             divisor = self._convert_stones_and_lbs_to_lbs(other)
         elif isinstance(other, StLb):

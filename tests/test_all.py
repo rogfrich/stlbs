@@ -299,14 +299,13 @@ def test_divide_by_number():
     """
     Given that I have a StLb object
     As a user of the package
-    I want to be able to divide by a number (float, integer, decimal)
-    E.g. StLb(4, 0) / 2 == StLb(2, 0)
+    I want to be able to divide by a number (float, integer, decimal) and get the result StLb(0, answer)
     """
     from stlbs import StLb
 
     spam = StLb([4, 0])  # 56lb
-    correct = 2  # 56 / 28
-    assert spam / 28 == correct
+    divided_spam = spam / 2
+    assert divided_spam.in_lbs == 28
 
 
 def test_divide_by_invalid_type_raises_valueerror():

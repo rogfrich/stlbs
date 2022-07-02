@@ -1,12 +1,16 @@
 # stlbs
-`stlbs` is a simple, happy little Python library  which has only one class: `StLb`. An instance of `StLb` represents a weight in the form of stones and pounds (lbs). It allows arithmatic with weights in stones and pounds in a very nautural and easy to use way.
+The `stlbs` package (pronounced _stonepounds_) is the home of the `StLb` datatype. 
+
+In the UK, people often measure their weight in [stones](https://en.wikipedia.org/wiki/Stone_(unit)) and [pounds](https://en.wikipedia.org/wiki/Pound_(mass)) - it's common to hear people describe themselves as weighing, for example, "thirteen stones and four pounds". Working in code with these units can be annoying. You need to treat the stones and pounds as separate values somehow; no-one will thank you for presenting a weight as `1.29 stones` when they expected to see `1 stone and 4 lbs`. 
+
+The `StLb` datatype (pronounced _stonepound_) makes working with stones and pounds much easier. An instance of `StLb` is single object which represents a weight in the form of stones and pounds (lbs). It gives an easy way to display such a weight as numbers or text, and offers a simple way to do arithmatic with weights in stones and pounds. `stlbs` has no dependencies outside the Python Standard Library.
 
 ## Basic usage
 
 ### The StLb object - initialisation
 
 The `StLb()` class is a data type to hold weights in stones and lbs.
-```python
+```
 >>> from stlbs import StLb
 ```
 
@@ -28,9 +32,7 @@ When initialised with lbs only, such as in the example above, the `StLb` object 
 
 ### `StLb` attributes
 
-An instance of `StLb` has a number of useful attributes:
-
-Given and instance of:
+An instance of `StLb` has a number of useful attributes. Given an instance of:
 ```
 >>> my_weight = StLb([10, 7])
 ```
@@ -91,7 +93,7 @@ You can also subtract in place:
 >>> my_weight
 StLb object: 3st and 7 lb [49 lb]
 ```
-Note that the result of subtraction from an instance of `StLb` cannot be negative. Any matematical operation that would result in a negative number raises a `SubtractionBelowZeroError` exception.
+Note that the result of subtraction from an instance of `StLb` cannot be negative. Any mathematical operation that would result in a negative number raises a `SubtractionBelowZeroError` exception.
 ### Multiplication
 
 You can multiply two `StLb` objects together:
@@ -137,3 +139,8 @@ StLb object: 11st and 7 lb [161 lb]
 >>> StLb((10, 7)) + (1, 0)
 StLb object: 11st and 7 lb [161 lb]
 ```
+
+## Constraints
+A `StLb` object has two constraints on it:
+- It can't be initialised with negative values for `whole_stones` or `remainder_lbs`. Doing so will raise a `ValueError`.
+- Subtracting from it can't result in a negative number. Doing so will result in a `ubtractionBelowZeroError`.

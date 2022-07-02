@@ -338,3 +338,60 @@ def test_convert_stones_and_lbs_to_lbs():
     # Value of foo is irrelevant to this test - just need to instantiate an instance, so need to give required values
     correct = 15
     assert foo._convert_stones_and_lbs_to_lbs((1, 1)) == correct
+
+
+def test_argument_validation_allows_perrmited_types_only():
+    """
+    Given that the StLb param should only accept a list or tuple
+    As the maintainer of the package
+    I want the validation code to raise a Type error if the argument is not a list or a tuple
+    """
+    from stlbs import StLb
+
+    with pytest.raises(TypeError):
+        foo = StLb("not a valid type")
+
+    with pytest.raises(TypeError):
+        spam = StLb(999)
+
+    with pytest.raises(TypeError):
+        eggs = StLb(StLb)
+
+
+def test_argument_validation_allows_perrmited_length_sequences_only():
+    """
+    Given that the StLb param should only accept a list or tuple of two items
+    As the maintainer of the package
+    I want the validation code to raise a ValueError error if the argument does not have exactly two items
+    """
+    from stlbs import StLb
+
+    with pytest.raises(ValueError):
+        foo = StLb([2, 2, 2])
+
+    with pytest.raises(ValueError):
+        foo = StLb([2])
+
+
+def test_argument_validation_does_not_allow_non_numeric_types():
+    """
+    Given that I am instantiating a StLb instance
+    As the maintainer of the package
+    I want the validation code to raise a Type error if either of the items in the argument contains any type other than int or float
+    """
+    from stlbs import StLb
+
+    with pytest.raises(TypeError):
+        foo = StLb(["one", 0])
+
+    with pytest.raises(TypeError):
+        bar = StLb([0, [1, 2]])
+
+
+def test_argument_validation_does_not_allow_negative_numbers():
+    """
+    Given that I am instantiating a StLb instance
+    As the maintainer of the package
+    I want the validation code to raise a ValueError if either of the items in the argument are a negative number
+    """
+    ...

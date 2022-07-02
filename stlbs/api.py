@@ -1,9 +1,29 @@
+from typing import Union, List, Tuple
 from exceptions import SubtractionBelowZeroError
 
 
 class StLb:
-    def __init__(self, stones_lbs):
+    def __init__(self, stones_lbs: Union[List, Tuple]):
+        if not isinstance(stones_lbs, (list, tuple)):
+            raise TypeError(
+                f"Invalid type: {type(stones_lbs)}. Should be tuple or list in the format [whole_stones, remainder_lbs"
+            )
+
+        if not len(stones_lbs) == 2:
+            raise ValueError(
+                f"Expected argument is (whole_stones, remainder_lbs). Got {stones_lbs}"
+            )
+
+        for item in stones_lbs:
+            if not isinstance(item, (int, float)):
+                raise TypeError(
+                    "StLb objects must be initialised with a tuple or list containing ints or floats"
+                )
+            if item < 0:
+                raise ValueError("Negative numbers are not allowed in StLb objects")
+
         self.in_lbs = self._convert_stones_and_lbs_to_lbs(stones_lbs)
+
         self.whole_stones, self.remainder_lbs = self._convert_lbs_to_stones_and_lbs(
             self.in_lbs
         )

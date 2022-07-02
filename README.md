@@ -30,17 +30,25 @@ When initialised with lbs only, such as in the example above, the `StLb` object 
 
 An instance of `StLb` has a number of useful attributes:
 ```
+Given an instance defined as:
 >>> my_weight = StLb([10, 7])
-
+```
+We can access the `whole_stones` and `remainder_lbs` values separately:
+```
 >>> my_weight.whole_stones
 10
 
 >>> my_weight.remainder_lbs
 7
-
+```
+We can get the value in lbs:
+```
 >>> my_weight.in_lbs
 147
+```
 
+We can get a nice textual representation:
+```
 >>> my_weight.text
 '10st and 7 lb [147 lb]'
 ```
@@ -94,7 +102,7 @@ StLb object: 56st and 0 lb [784 lb]
 ```
 That answer might look surprising if you were expecting `2st * 2st` to equal `4st`. Multiplying two `StLb` objects together multiplies their `in_lbs` values and converts back to stones and lbs. Our example of `2st * 2st` is the same as saying `28lbs * 28lbs`, which gives `784lbs` or `56st`.
 
-If you just want to multiply a StLb object by a number (rather than another `StLb instance), you can:
+If you just want to multiply a StLb object by a number (rather than another `StLb` instance), you can:
 ```
 >>> my_weight = StLb((2, 0))
 >>> my_weight * 2
@@ -117,4 +125,14 @@ You can also divide a `StLb` object by a number:
 StLb object: 4st and 0 lb [56 lb]
 >>> weight_1 / 2
 StLb object: 2.0st and 0.0 lb [28.0 lb]
+```
+
+### A note on values for doing maths with `StLb`
+Any mathematical operation that can be performed on a `StLb` instance with another instance (such as adding them together) will also work if you use a list or tuple in the format `(whole_stones, remainder_lbs)`. For example, these two expressions will give the same result:
+```
+>>> StLb((10, 7)) + StLb((1, 0))
+StLb object: 11st and 7 lb [161 lb]
+
+>>> StLb((10, 7)) + (1, 0)
+StLb object: 11st and 7 lb [161 lb]
 ```

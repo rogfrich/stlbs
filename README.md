@@ -30,7 +30,7 @@ When initialised with lbs only, such as in the example above, the `StLb` object 
 
 An instance of `StLb` has a number of useful attributes:
 
-Given and instance of:
+Given an instance of:
 ```
 >>> my_weight = StLb([10, 7])
 ```

@@ -29,8 +29,9 @@ When initialised with lbs only, such as in the example above, the `StLb` object 
 ### `StLb` attributes
 
 An instance of `StLb` has a number of useful attributes:
+
+Given and instance of:
 ```
-Given an instance defined as:
 >>> my_weight = StLb([10, 7])
 ```
 We can access the `whole_stones` and `remainder_lbs` values separately:

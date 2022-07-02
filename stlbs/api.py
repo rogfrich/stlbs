@@ -4,17 +4,30 @@ from exceptions import SubtractionBelowZeroError
 
 class StLb:
     def __init__(self, stones_lbs: Union[List, Tuple]):
-        if not isinstance(stones_lbs, (list, tuple)):
+        sanitised_input = self._validate_input(stones_lbs)
+        self.in_lbs = self._convert_stones_and_lbs_to_lbs(sanitised_input)
+        self.whole_stones, self.remainder_lbs = self._convert_lbs_to_stones_and_lbs(
+            self.in_lbs
+        )
+        self.text = (
+            f"{self.whole_stones}st and {self.remainder_lbs} lb [{self.in_lbs} lb]"
+        )
+
+    def _validate_input(self, input):
+        """
+        Validate that the user-supplied arguments to the instance are allowed.
+        """
+        if not isinstance(input, (list, tuple)):
             raise TypeError(
-                f"Invalid type: {type(stones_lbs)}. Should be tuple or list in the format [whole_stones, remainder_lbs"
+                f"Invalid type: {type(input)}. Should be tuple or list in the format [whole_stones, remainder_lbs"
             )
 
-        if not len(stones_lbs) == 2:
+        if not len(input) == 2:
             raise ValueError(
-                f"Expected argument is (whole_stones, remainder_lbs). Got {stones_lbs}"
+                f"Expected argument is (whole_stones, remainder_lbs). Got {input}"
             )
 
-        for item in stones_lbs:
+        for item in input:
             if not isinstance(item, (int, float)):
                 raise TypeError(
                     "StLb objects must be initialised with a tuple or list containing ints or floats"
@@ -22,14 +35,7 @@ class StLb:
             if item < 0:
                 raise ValueError("Negative numbers are not allowed in StLb objects")
 
-        self.in_lbs = self._convert_stones_and_lbs_to_lbs(stones_lbs)
-
-        self.whole_stones, self.remainder_lbs = self._convert_lbs_to_stones_and_lbs(
-            self.in_lbs
-        )
-        self.text = (
-            f"{self.whole_stones}st and {self.remainder_lbs} lb [{self.in_lbs} lb]"
-        )
+        return input
 
     def _convert_lbs_to_stones_and_lbs(self, lbs):
         whole_stones = lbs // 14

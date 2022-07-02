@@ -143,4 +143,4 @@ StLb object: 11st and 7 lb [161 lb]
 ## Constraints
 A `StLb` object has two constraints on it:
 - It can't be initialised with negative values for `whole_stones` or `remainder_lbs`. Doing so will raise a `ValueError`.
-- Subtracting from it can't result in a negative number. Doing so will result in a `ubtractionBelowZeroError`.
+- Subtracting from it can't result in a negative number. Doing so will result in a `SubtractionBelowZeroError`.

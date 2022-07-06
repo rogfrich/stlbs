@@ -1,6 +1,5 @@
 import pytest
-from exceptions import SubtractionBelowZeroError
-
+from stlbs.exceptions import SubtractionBelowZeroError
 
 # Object instantiation tests
 
@@ -11,7 +10,6 @@ def test_stlb_class_is_importable():
     as a user of the package
     I want to be able to import it.
     """
-    from stlbs import StLb
 
 
 def test_input_weight_correctly_assigned():

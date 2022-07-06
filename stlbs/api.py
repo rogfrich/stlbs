@@ -1,5 +1,5 @@
 from typing import Union, List, Tuple
-from exceptions import SubtractionBelowZeroError
+from stlbs.exceptions import SubtractionBelowZeroError
 
 
 class StLb:

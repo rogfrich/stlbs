@@ -1,13 +1,13 @@
 [build-system]
 requires = ["setuptools>=61.0.0", "wheel"]
-build-backend = "setuptools.build.meta"
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "stlbs"
 version = "1.0.0"
 description = "A datatype to make using stones and pounds easier"
 readme = "README.md"
-authors = [{name = "Rich Cairns", email = "richard.a.cairns<remove-this-bit>@gmail.com"}]
+authors = [{name = "Rich Cairns", email = "richard.a.cairnsNOSPAM@gmail.com"}]
 license = { file = "LICENSE"}
 classifiers = [
     "License :: OSI Approved :: MIT License",

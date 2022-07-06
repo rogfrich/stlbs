@@ -7,6 +7,14 @@ The `StLb` datatype (pronounced _stonepound_) makes working with stones and poun
 
 ## Basic usage
 
+### Installation
+
+Install `stlbs` from pip:
+
+`pip install stlbs`
+
+`stlbs` has no third party dependencies, and supports Python 3.9 and later.
+
 ### The StLb object - initialisation
 
 The `StLb()` class is a data type to hold weights in stones and lbs.

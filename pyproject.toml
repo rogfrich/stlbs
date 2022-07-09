@@ -18,7 +18,7 @@ keywords = ["weight", "mass", "stones", "pounds", "lbs", "stones and pounds"]
 requires-python = ">=3.9"
 
 [project.optional-dependencies]
-dev = ["bumpver", "black", "pytest"]
+dev = ["bumpver", "black", "pytest", "twine"]
 
 [project.urls]
 Homepage = "https://github.com/rogfrich/stlbs"
